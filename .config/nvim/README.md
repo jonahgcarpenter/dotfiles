@@ -1,3 +1,5 @@
 # NVIM CONFIG
 
-Goodbye VSCode, you won't be missed!
+# To install dependancies use this:
+
+sudo pacman -S npm unzip
