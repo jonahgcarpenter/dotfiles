@@ -24,6 +24,10 @@ sudo pacman -S nvim
 
 sudo pacman -S tmux
 
+sudo pacman -S zsh
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 # YAY
 
 ## Install YAY
