@@ -24,3 +24,5 @@ makepkg -si
 yay -S spotify
 
 yay -S google-chrome
+
+yay -S flameshot-git
