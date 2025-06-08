@@ -1,4 +1,4 @@
-# Fragsap's Dotfiles
+# Dotfiles
 
 ## Follow the subdirectory README's when necessary until fully scripted
 
