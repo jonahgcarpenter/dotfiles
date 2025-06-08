@@ -22,6 +22,8 @@ sudo pacman -S ly
 
 sudo pacman -S nvim
 
+sudo pacman -S tmux
+
 # YAY
 
 ## Install YAY
