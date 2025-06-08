@@ -2,4 +2,4 @@
 
 # To install dependancies use this:
 
-sudo pacman -S nvim npm unzip
+sudo pacman -S npm unzip

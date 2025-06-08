@@ -1,8 +1,8 @@
 # Dotfiles
 
-## Follow the subdirectory README's when necessary until fully scripted
+## Check for subdirectory README's when necessary
 
-## Additional install commands
+### Packages
 
 sudo pacman -S solaar
 
@@ -16,12 +16,20 @@ sudo pacman -S hyprpaper
 
 sudo pacman -S pamixer
 
-## YAY
+sudo pacman -S ly
+
+sudo pacman -S nvim
+
+# YAY
+
+## Install YAY
 
 sudo pacman -S --needed base-devel git
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
+
+### Packages
 
 yay -S spotify
 
