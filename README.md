@@ -33,6 +33,7 @@ sudo pacman -S tmux
 sudo pacman -S zsh
 
 ### Oh My Zsh
+
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # YAY
@@ -51,3 +52,5 @@ yay -S spotify
 yay -S google-chrome
 
 yay -S flameshot-git
+
+yay -S wireguird
