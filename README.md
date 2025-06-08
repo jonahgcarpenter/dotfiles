@@ -6,6 +6,8 @@
 
 ### Packages
 
+sudo pacman -S btop
+
 sudo pacman -S solaar
 
 sudo pacman -S liquidctl
@@ -26,6 +28,7 @@ sudo pacman -S tmux
 
 sudo pacman -S zsh
 
+### Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # YAY
