@@ -12,6 +12,8 @@ sudo pacman -S discord
 
 sudo pacman -S kubectl
 
+sudo pacman -S hyprpaper
+
 ## YAY
 
 sudo pacman -S --needed base-devel git
