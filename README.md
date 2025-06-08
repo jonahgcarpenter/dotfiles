@@ -8,6 +8,10 @@
 
 sudo pacman -S btop
 
+sudo pacman -S waybar
+
+sudo pacman -S rofi
+
 sudo pacman -S solaar
 
 sudo pacman -S liquidctl
