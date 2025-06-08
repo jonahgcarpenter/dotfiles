@@ -10,6 +10,8 @@ sudo pacman -S liquidctl
 
 sudo pacman -S discord
 
+sudo pacman -S kubectl
+
 ## YAY
 
 sudo pacman -S --needed base-devel git
