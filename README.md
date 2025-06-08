@@ -14,6 +14,8 @@ sudo pacman -S kubectl
 
 sudo pacman -S hyprpaper
 
+sudo pacman -S pamixer
+
 ## YAY
 
 sudo pacman -S --needed base-devel git
