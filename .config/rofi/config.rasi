@@ -6,12 +6,12 @@
     highlight:      #333333;
 
     /* Font Configuration */
-    font: "Hack Nerd Font Mono";
+    font: "Hack Nerd Font Mono 20";
 
     /* Layout & Spacing */
-    spacing: 10px;
-    padding: 10px;
-    border-radius: 8px;
+    spacing: 15px;
+    padding: 15px;
+    border-radius: 10px;
 }
 
 configuration {
@@ -21,7 +21,7 @@ configuration {
 }
 
 window {
-    width: 500px;
+    width: 650px;
     background-color: @black;
     border: 1px;
     border-color: @grey;
@@ -59,7 +59,7 @@ listview {
     fixed-height: false;
     cycle: true;
     scrollbar: false;
-    spacing: 5px;
+    spacing: 0px;
 }
 
 element {
@@ -75,7 +75,7 @@ element-text {
 }
 
 element-icon {
-    size: 20px;
+    size: 30px;
     padding: 0 10px 0 0;
     background-color: inherit;
 }
