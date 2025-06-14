@@ -22,8 +22,6 @@ sudo pacman -S kubectl --noconfirm --needed
 
 sudo pacman -S hyprpaper --noconfirm --needed
 
-sudo pacman -S pamixer --noconfirm --needed
-
 sudo pacman -S ly --noconfirm --needed
 
 sudo pacman -S nvim --noconfirm --needed
