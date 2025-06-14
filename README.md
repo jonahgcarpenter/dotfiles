@@ -8,29 +8,31 @@
 
 sudo pacman -S btop --noconfirm --needed
 
-sudo pacman -S waybar
+sudo pacman -S waybar --noconfirm --needed
 
-sudo pacman -S rofi
+sudo pacman -S rofi --noconfirm --needed
 
-sudo pacman -S solaar
+sudo pacman -S solaar --noconfirm --needed
 
-sudo pacman -S liquidctl
+sudo pacman -S liquidctl --noconfirm --needed
 
-sudo pacman -S discord
+sudo pacman -S discord --noconfirm --needed
 
-sudo pacman -S kubectl
+sudo pacman -S kubectl --noconfirm --needed
 
-sudo pacman -S hyprpaper
+sudo pacman -S hyprpaper --noconfirm --needed
 
-sudo pacman -S pamixer
+sudo pacman -S pamixer --noconfirm --needed
 
-sudo pacman -S ly
+sudo pacman -S ly --noconfirm --needed
 
-sudo pacman -S nvim
+sudo pacman -S nvim --noconfirm --needed
 
-sudo pacman -S tmux
+sudo pacman -S tmux --noconfirm --needed
 
-sudo pacman -S zsh
+sudo pacman -S zsh --noconfirm --needed
+
+sudo pacman -S pavucontrol --noconfirm --needed
 
 ### Oh My Zsh
 
