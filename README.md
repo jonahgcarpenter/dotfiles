@@ -6,7 +6,7 @@
 
 ### Packages
 
-sudo pacman -S btop
+sudo pacman -S btop --noconfirm --needed
 
 sudo pacman -S waybar
 
