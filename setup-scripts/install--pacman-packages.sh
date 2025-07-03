@@ -22,6 +22,7 @@ packages_to_install=(
     'pavucontrol'
     'npm'
     'unzip'
+    'k9s'
 )
 
 # --- Script Execution ---
