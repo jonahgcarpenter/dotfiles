@@ -20,6 +20,7 @@ packages_to_install=(
     'unzip'
     'k9s'
     'gimp'
+    'kustomize'
 )
 
 # --- Script Execution ---
