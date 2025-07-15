@@ -21,6 +21,7 @@ packages_to_install=(
     'k9s'
     'gimp'
     'kustomize'
+    'kubeseal'
 )
 
 # --- Script Execution ---
