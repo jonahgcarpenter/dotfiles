@@ -22,6 +22,8 @@ packages_to_install=(
     'gimp'
     'kustomize'
     'kubeseal'
+    'docker'
+    'docker-compose'
 )
 
 # --- Script Execution ---
