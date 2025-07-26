@@ -7,6 +7,7 @@ scripts_to_run=(
     "scripts/install-yay.sh"
     "scripts/install-yay-packages.sh"
     "scripts/install-dotfiles.sh"
+    "scripts/docker-setup.sh"
 )
 
 # --- Color Codes ---
@@ -39,4 +40,8 @@ for script in "${scripts_to_run[@]}"; do
 done
 
 echo -e "\n${BLUE}### Setup Process Complete! ###${NC}\n"
+echo -e "\n${BLUE}### Docker Post-Installation Step ###${NC}"
+echo -e "${YELLOW}The user '$USER' has been added to the 'docker' group."
+echo -e "${YELLOW}For this change to take effect, you must log out and log back in, or restart your computer."
+echo -e "${YELLOW}After you do, you will be able to run Docker commands without using 'sudo'.${NC}\n"
 echo -e "\n${BLUE}### Welcome to Arch Linux Sir ###${NC}\n"
