@@ -24,6 +24,7 @@ packages_to_install=(
     'kubeseal'
     'docker'
     'docker-compose'
+    'dbeaver'
 )
 
 # --- Script Execution ---

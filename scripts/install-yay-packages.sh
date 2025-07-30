@@ -8,6 +8,7 @@ aur_packages=(
     'spotify'
     'google-chrome'
     'flameshot-git'
+    'lazydocker'
 )
 
 # --- Script Execution ---
