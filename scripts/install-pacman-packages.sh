@@ -25,6 +25,9 @@ packages_to_install=(
     'docker'
     'docker-compose'
     'dbeaver'
+    # Audio Effects
+    'qpwgraph'
+    'easyeffects'
 )
 
 # --- Script Execution ---
