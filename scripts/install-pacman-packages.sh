@@ -8,7 +8,7 @@ packages_to_install=(
     'waybar'
     'rofi'
     'solaar'
-    'liquidctl'
+    'wl-clipboard'
     'discord'
     'kubectl'
     'hyprpaper'
