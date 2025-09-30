@@ -4,6 +4,7 @@ set -e
 
 # --- List of packages to install ---
 packages_to_install=(
+    'spotify-launcher'
     'btop'
     'waybar'
     'rofi'

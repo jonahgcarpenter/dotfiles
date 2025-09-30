@@ -5,7 +5,6 @@ set -e
 
 # --- List of AUR packages to install ---
 aur_packages=(
-    'spotify'
     'google-chrome'
     'lazydocker'
 )
