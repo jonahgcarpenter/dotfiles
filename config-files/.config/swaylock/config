@@ -1,0 +1,13 @@
+ignore-empty-password
+indicator-thickness=15
+indicator-radius=150
+image=~/projects/dotfiles/wallpapers/purple-landscape.jpeg
+font=Hack Nerd Font Mono
+
+# Colors
+ring-color=890051
+key-hl-color=880033
+line-color=00000000
+inside-color=00000088
+inside-clear-color=890051
+separator-color=00000000

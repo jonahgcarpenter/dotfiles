@@ -7,12 +7,12 @@ set -e
 echo "--- Starting installation of YAY ---"
 echo ""
 
-# 1. Install required dependencies
+# Install required dependencies
 # The 'sudo' command will prompt for your password.
 echo "--> Step 1: Installing required dependencies..."
 sudo pacman -S --needed base-devel git
 
-# 2. Clone the yay repository into a temporary directory
+# Clone the yay repository into a temporary directory
 # This avoids leaving the 'yay' folder in your home directory.
 # 'mktemp -d' creates a temporary directory and prints its name.
 temp_dir=$(mktemp -d)

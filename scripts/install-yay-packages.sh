@@ -7,6 +7,7 @@ set -e
 aur_packages=(
     'google-chrome'
     'lazydocker'
+    'flux-bin'
 )
 
 # --- Script Execution ---

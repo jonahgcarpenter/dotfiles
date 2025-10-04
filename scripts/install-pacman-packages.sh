@@ -26,6 +26,11 @@ packages_to_install=(
     'docker'
     'docker-compose'
     'dbeaver'
+    'terraform'
+    'ansible-core'
+    'talosctl'
+    'helm'
+    'swaylock'
 )
 
 # --- Script Execution ---
