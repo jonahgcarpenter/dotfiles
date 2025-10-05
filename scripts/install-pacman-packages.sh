@@ -31,6 +31,7 @@ packages_to_install=(
     'talosctl'
     'helm'
     'swaylock'
+    'usbutils'
 )
 
 # --- Script Execution ---
