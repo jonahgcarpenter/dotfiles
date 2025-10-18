@@ -44,6 +44,7 @@
 #network,
 #cpu,
 #memory,
+#custom-gpu,
 #custom-lock,
 #custom-power {
   background-color: #101010;
@@ -52,6 +53,7 @@
   border-radius: 0px 5px 5px 0px;
 }
 
+#custom-gpu,
 #memory {
   border-radius: 0px 5px 5px 0px;
 }

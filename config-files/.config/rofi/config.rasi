@@ -1,9 +1,11 @@
 * {
-    /* Main Theme Colors */
-    black:          #1E1E1E;
-    white:          #F5F5F5;
-    grey:           #4A4A4A;
-    highlight:      #333333;
+    /* Main Theme Colors - Night Sky/Catppuccin-inspired */
+    background:     rgba(30, 30, 46, 0.85);  /* Translucent dark blue-purple */
+    background-alt: rgba(30, 30, 46, 0.7);   /* A bit more transparent for items */
+    foreground:     #CDD6F4; /* Light blue/lavender text */
+    subtle:         #585B70; /* Muted grey-blue */
+    highlight-bg:   #45475A; /* Darker highlight background */
+    highlight-fg:   #B4BEFE; /* Bright lavender for selected text */
 
     /* Font Configuration */
     font: "Hack Nerd Font Mono 20";
@@ -22,9 +24,9 @@ configuration {
 
 window {
     width: 650px;
-    background-color: @black;
+    background-color: @background;
     border: 1px;
-    border-color: @grey;
+    border-color: @subtle;
     border-radius: @border-radius;
     padding: @padding;
 }
@@ -40,17 +42,17 @@ inputbar {
     spacing: @spacing;
     padding: 10px;
     border-radius: @border-radius;
-    background-color: @black;
+    background-color: @highlight-bg;
 }
 
 prompt {
-    text-color: @white;
+    text-color: @highlight-fg;
 }
 
 entry {
     placeholder: "Search...";
-    placeholder-color: @grey;
-    text-color: @white;
+    placeholder-color: @subtle;
+    text-color: @foreground;
 }
 
 listview {
@@ -59,14 +61,14 @@ listview {
     fixed-height: false;
     cycle: true;
     scrollbar: false;
-    spacing: 0px;
+    spacing: 5px;
 }
 
 element {
     padding: 8px 12px;
     border-radius: @border-radius;
     background-color: transparent;
-    text-color: @white;
+    text-color: @foreground;
 }
 
 element-text {
@@ -81,25 +83,25 @@ element-icon {
 }
 
 element.normal.normal {
-    background-color: @black;
-    text-color: @white;
+    background-color: @background-alt;
+    text-color: @foreground;
 }
 
 element.alternate.normal {
-    background-color: @black;
-    text-color: @white;
+    background-color: @background-alt;
+    text-color: @foreground;
 }
 
 element.selected.normal {
-    background-color: @highlight;
-    text-color: @white;
+    background-color: @highlight-bg;
+    text-color: @highlight-fg;
 }
 
 message {
     padding: @padding;
     border: 1px;
-    border-color: @grey;
+    border-color: @subtle;
     border-radius: @border-radius;
-    background-color: @black;
-    text-color: @white;
+    background-color: @background;
+    text-color: @foreground;
 }
