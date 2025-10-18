@@ -5,3 +5,5 @@
 ## TODO
 
 ### [Add List](https://github.com/stars/jonahgcarpenter/lists/dotfiles-todo)
+
+- Terminal image viewer
