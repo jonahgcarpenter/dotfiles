@@ -1,6 +1,6 @@
 # Dotfiles
 
-![arch_btw](https://github.com/user-attachments/assets/d5137b2a-0cbd-4f40-beb8-9c685d9319c6)
+<img width="2560" height="1440" alt="fastfetch" src="https://github.com/user-attachments/assets/6de6514d-5751-44e2-af42-a4a784e9dbb3" />
 
 ## TODO
 
