@@ -30,7 +30,7 @@
   "clock": {
     "timezone": "America/Chicago",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "{:%m/%d - %H:%M}"
+    "format": "{:%m/%d - %I:%M %p}" 
   },
   "network": {
     "format-wifi": "󰤢 ",
