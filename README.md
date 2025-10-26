@@ -6,5 +6,6 @@
 
 ### [Add List](https://github.com/stars/jonahgcarpenter/lists/dotfiles-todo)
 
-- Terminal image viewer
-- DAC Lossless Format
+- dark mode dolphin?
+- terminal image viewer
+- DAC lossless
