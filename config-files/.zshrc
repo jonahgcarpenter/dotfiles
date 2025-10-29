@@ -104,3 +104,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias k="kubectl"
 alias lzd="lazydocker"
+alias system-update="~/projects/dotfiles/system-update.sh"
