@@ -32,6 +32,7 @@ packages_to_install=(
     'helm'
     'swaylock'
     'usbutils'
+    'dnsutils'
 )
 
 # --- Script Execution ---

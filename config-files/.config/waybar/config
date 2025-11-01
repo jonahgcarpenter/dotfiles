@@ -50,9 +50,11 @@
     "format": "  {used:0.1f}G/{total:0.1f}G"
   },
   "custom/gpu": {
-    "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | awk '{print $1}'",
+    "exec": "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader,nounits | awk -F', ' '{ printf \"{\\\"text\\\": \\\"%.1fG/%.1fG\\\", \\\"percentage\\\": %s}\\n\", $2/1024, $3/1024, $1 }'",
+    "return-type": "json",
     "interval": 1,
-    "format": "GPU: {}%",
+    "format": "󰍹 {icon} {percentage:>2}% {text}",
+    "format-icons": [" ", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     "tooltip": false
   },
   "pulseaudio": {
