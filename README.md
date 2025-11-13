@@ -6,6 +6,6 @@
 
 ### [Add List](https://github.com/stars/jonahgcarpenter/lists/dotfiles-todo)
 
+- swayidle??
 - dark mode dolphin?
 - terminal image viewer
-- DAC lossless
