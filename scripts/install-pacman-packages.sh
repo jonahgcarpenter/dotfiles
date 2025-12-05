@@ -46,8 +46,8 @@ sudo pacman -S --noconfirm --needed "${packages_to_install[@]}" $(pacman -Sgq ne
 # Install Oh My Zsh non-interactively
 # Sets as default shell
 echo "--> Installing Oh My Zsh and setting Zsh as default shell..."
-# The --unattended flag ensures the script runs automatically without prompts.
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+sudo chsh -s /usr/bin/zsh $USER
 echo ""
 
 echo ""
