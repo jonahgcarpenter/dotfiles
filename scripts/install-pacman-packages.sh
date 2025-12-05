@@ -33,6 +33,7 @@ packages_to_install=(
     'swaylock'
     'usbutils'
     'dnsutils'
+    'fastfetch'
 )
 
 # --- Script Execution ---
