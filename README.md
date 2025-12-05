@@ -10,3 +10,5 @@
 - terminal image viewer
 - fingerprint reader?
 - auto backlit keyboard
+- screen brightness
+- librapods
