@@ -6,6 +6,5 @@
 
 ### [Add List](https://github.com/stars/jonahgcarpenter/lists/dotfiles-todo)
 
-- swayidle??
 - dark mode dolphin?
-- terminal image viewer
+- fix sleep timer not stopping if logging back in before sleep
