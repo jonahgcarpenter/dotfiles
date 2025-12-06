@@ -33,6 +33,8 @@ packages_to_install=(
     'swaylock'
     'usbutils'
     'dnsutils'
+    'imagemagick'
+    'luarocks'
 )
 
 # --- Script Execution ---
