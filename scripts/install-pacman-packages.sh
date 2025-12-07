@@ -34,6 +34,8 @@ packages_to_install=(
     'usbutils'
     'dnsutils'
     'fastfetch'
+    'imagemagick'
+    'luarocks'
 )
 
 # --- Script Execution ---
