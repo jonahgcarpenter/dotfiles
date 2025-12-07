@@ -8,6 +8,7 @@ aur_packages=(
     'google-chrome'
     'lazydocker'
     'flux-bin'
+    'python-validity'
 )
 
 # --- Script Execution ---

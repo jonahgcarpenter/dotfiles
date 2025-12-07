@@ -8,6 +8,7 @@ scripts_to_run=(
     "scripts/install-yay-packages.sh"
     "scripts/install-dotfiles.sh"
     "scripts/docker-setup.sh"
+    "scripts/fingerprint-setup.sh"
 )
 
 # --- Color Codes ---
