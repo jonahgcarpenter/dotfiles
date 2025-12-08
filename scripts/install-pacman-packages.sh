@@ -36,6 +36,7 @@ packages_to_install=(
     'fastfetch'
     'imagemagick'
     'luarocks'
+    'tlp'
 )
 
 # --- Script Execution ---
