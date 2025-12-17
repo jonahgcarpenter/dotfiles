@@ -6,5 +6,6 @@
 
 ### [Add List](https://github.com/stars/jonahgcarpenter/lists/dotfiles-todo)
 
-- dark mode dolphin?
+- yazi
+- hyprlock with fingerprint for laptop
 - fix sleep timer not stopping if logging back in before sleep
