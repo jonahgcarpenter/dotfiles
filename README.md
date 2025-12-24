@@ -7,7 +7,7 @@
 ### [Add List](https://github.com/stars/jonahgcarpenter/lists/dotfiles-todo)
 
 - yazi
-- hyprlock with fingerprint for laptop
 - fix sleep timer not stopping if logging back in before sleep
 - idempotent install-dotfiles script
 - combine laptop/desktop into single branch
+

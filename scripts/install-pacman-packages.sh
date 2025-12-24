@@ -35,6 +35,16 @@ packages_to_install=(
     'dnsutils'
     'imagemagick'
     'luarocks'
+    'yazi'
+    'ffmpeg'
+    '7zip'
+    'jq'
+    'poppler'
+    'fd'
+    'ripgrep'
+    'fzf'
+    'zoxide'
+    'resvg'
 )
 
 # --- Script Execution ---
