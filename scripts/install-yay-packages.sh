@@ -8,7 +8,6 @@ aur_packages=(
     'google-chrome'
     'lazydocker'
     'flux-bin'
-    'postman-bin'
 )
 
 # --- Script Execution ---
