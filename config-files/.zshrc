@@ -107,4 +107,7 @@ alias lzd="lazydocker"
 alias system-update="~/projects/dotfiles/system-update.sh"
 
 # Paths
-export PATH=$PATH:$(go env GOPATH)/bin
+
+# GO 
+export GOPATH="$HOME/.local/share/go"
+export PATH="$PATH:$GOPATH/bin"
