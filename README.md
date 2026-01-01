@@ -8,6 +8,4 @@
 
 - yazi SMB shares
 - fix sleep timer not stopping if logging back in before sleep
-- idempotent install-dotfiles script
-- combine laptop/desktop into single branch
-
+- screen brightness buttons
