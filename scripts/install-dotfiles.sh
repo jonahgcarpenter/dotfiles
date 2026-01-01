@@ -32,8 +32,7 @@ fi
 echo -e "\n${BLUE}### Moving 'ly' configuration to /etc/ ###${NC}"
 if [ -d "$HOME/.config/ly" ]; then
     echo "Moving ~/.config/ly to /etc/ly (requires sudo)"
-    sudo cp -rT "$HOME/.config/ly/" "/etc/ly/"
-    rm -rf "$HOME/.config/ly"
+    sudo cp -rT "$HOME/.config/ly/" "/etc/ly/" && rm -rf "$HOME/.config/ly"
 fi
 
 echo -e "\n${GREEN}### Dotfiles deployment complete! ###${NC}"
