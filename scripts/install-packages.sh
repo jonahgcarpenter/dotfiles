@@ -2,7 +2,7 @@
 
 set -e
 
-packages_to_install=(
+pacman_packages=(
     'spotify-launcher'
     'btop'
     'waybar'
@@ -46,11 +46,17 @@ packages_to_install=(
     'resvg'
 )
 
-echo "--- Starting package installation script ---"
-echo ""
+aur_packages=(
+    'google-chrome'
+    'lazydocker'
+    'flux-bin'
+)
 
-echo "--> Installing ${#packages_to_install[@]} selected packages..."
-sudo pacman -S --noconfirm --needed "${packages_to_install[@]}" $(pacman -Sgq nerd-fonts)
+echo "--> Installing ${#pacman_packages[@]} selected packages..."
+sudo pacman -S --noconfirm --needed "${pacman_packages[@]}" $(pacman -Sgq nerd-fonts)
+
+echo "--> Installing ${#aur_packages[@]} selected AUR packages without confirmation..."
+yay -S --noconfirm "${aur_packages[@]}"
 
 echo "--> Installing Oh My Zsh and setting Zsh as default shell..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -58,4 +64,4 @@ sudo chsh -s /usr/bin/zsh $USER
 echo ""
 
 echo ""
-echo "--- All specified packages have been installed successfully! ---"
+echo "--- All global packages have been installed successfully! ---"

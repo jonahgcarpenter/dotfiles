@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 alias k="kubectl"
 alias lzd="lazydocker"
 alias system-update="~/projects/dotfiles/system-update.sh"
+# alias battery-check="sudo tlp-stat -b"
 
 # Paths
 

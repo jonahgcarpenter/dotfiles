@@ -1,9 +1,8 @@
 #!/bin/bash
 
 scripts_to_run=(
-    "scripts/install-pacman-packages.sh"
     "scripts/install-yay.sh"
-    "scripts/install-yay-packages.sh"
+    "scripts/install-packages.sh"
     "scripts/install-dotfiles.sh"
     "scripts/docker-setup.sh"
 )
