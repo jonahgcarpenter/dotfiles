@@ -1,21 +1,10 @@
 #!/usr/bin/env bash
 
-# This script defines just a mode for rofi instead of being a self-contained
-# executable that launches rofi by itself. This makes it more flexible than
-# running rofi inside this script as now the user can call rofi as one pleases.
-# For instance:
-#
-#   rofi -show powermenu -modi powermenu:./rofi-power-menu
-#
-# See README.md for more information.
-
 set -e
 set -u
 
-# All supported choices
 all=(shutdown reboot suspend hibernate logout lockscreen)
 
-# By default, show all (i.e., just copy the array)
 show=("${all[@]}")
 
 declare -A texts
@@ -39,17 +28,14 @@ icons[cancel]="\Uf0156"
 
 declare -A actions
 actions[lockscreen]="loginctl lock-session ${XDG_SESSION_ID-}"
-#actions[switchuser]="???"
 actions[logout]="loginctl terminate-session ${XDG_SESSION_ID-}"
 actions[suspend]="systemctl suspend"
 actions[hibernate]="systemctl hibernate"
 actions[reboot]="systemctl reboot"
 actions[shutdown]="systemctl poweroff"
 
-# By default, ask for confirmation for actions that are irreversible
 confirmations=(reboot shutdown logout)
 
-# By default, no dry run
 dryrun=false
 showsymbols=true
 showtext=true
@@ -67,7 +53,6 @@ function check_valid {
     done
 }
 
-# Parse command-line options
 parsed=$(getopt --options=h --longoptions=help,dry-run,confirm:,choices:,choose:,symbols,no-symbols,text,no-text,symbols-font: --name "$0" -- "$@")
 if [ $? -ne 0 ]; then
     echo 'Terminating...' >&2
@@ -130,7 +115,6 @@ while true; do
             shift 2
             ;;
         "--choose")
-            # Check that the choice is valid
             check_valid "$1" "$2"
             selectionID="$2"
             shift 2
@@ -172,8 +156,6 @@ then
     exit 1
 fi
 
-# Define the messages after parsing the CLI options so that it is possible to
-# configure them in the future.
 
 function write_message {
     if [ -z ${symbols_font+x} ];
@@ -208,27 +190,21 @@ do
 done
 for entry in "${all[@]}"
 do
-    # Add zero-width space character (\u200b) to icon to ensure confirmation-
-    # and regular messages never collide.
     confirmationMessages[$entry]=$(write_message "${icons[$entry]}\u200b" "Yes, ${texts[$entry]}")
 done
 confirmationMessages[cancel]=$(write_message "${icons[cancel]}" "No, cancel")
 
 if [ $# -gt 0 ]
 then
-    # If arguments given, use those as the selection
     selection="${@}"
 else
-    # Otherwise, use the CLI passed choice if given
     if [ -n "${selectionID+x}" ]
     then
         selection="${messages[$selectionID]}"
     fi
 fi
 
-# Don't allow custom entries
 echo -e "\0no-custom\x1ftrue"
-# Use markup
 echo -e "\0markup-rows\x1ftrue"
 
 if [ -z "${selection+x}" ]
@@ -243,40 +219,33 @@ else
     do
         if [ "$selection" = "$(print_selection "${messages[$entry]}")" ]
         then
-            # Check if the selected entry is listed in confirmation requirements
             for confirmation in "${confirmations[@]}"
             do
                 if [ "$entry" = "$confirmation" ]
                 then
-                    # Ask for confirmation
                     echo -e "\0prompt\x1fAre you sure"
                     echo -e "${confirmationMessages[$entry]}\0icon\x1f${icons[$entry]}"
                     echo -e "${confirmationMessages[cancel]}\0icon\x1f${icons[cancel]}"
                     exit 0
                 fi
             done
-            # If not, then no confirmation is required, so mark confirmed
             selection=$(print_selection "${confirmationMessages[$entry]}")
         fi
         if [ "$selection" = "$(print_selection "${confirmationMessages[$entry]}")" ]
         then
             if [ $dryrun = true ]
             then
-                # Tell what would have been done
                 echo "Selected: $entry" >&2
             else
-                # Perform the action
                 ${actions[$entry]}
             fi
             exit 0
         fi
         if [ "$selection" = "$(print_selection "${confirmationMessages[cancel]}")" ]
         then
-            # Do nothing
             exit 0
         fi
     done
-    # The selection didn't match anything, so raise an error
     echo "Invalid selection: $selection" >&2
     exit 1
 fi
