@@ -2,11 +2,11 @@
 
 set -e
 
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-YELLOW='\033[1;33m'
-RED='\033[0;31m'
-NC='\033[0m'
+export GREEN='\033[0;32m'
+export BLUE='\033[0;34m'
+export YELLOW='\033[1;33m'
+export RED='\033[0;31m'
+export NC='\033[0m'
 
 echo -e "${BLUE}### Device Selection ###${NC}"
 echo "Which device type is this?"

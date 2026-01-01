@@ -10,14 +10,14 @@ aur_packages=(
     'python-validity'
 )
 
-echo "--- Starting extra package installation ---"
+echo -e "${BLUE}--- Starting extra package installation ---${NC}"
 echo ""
 
-echo "--> Installing ${#pacman_packages[@]} selected pacman packages..."
+echo -e "${BLUE}Installing ${#pacman_packages[@]} selected pacman packages...${NC}"
 sudo pacman -S --noconfirm --needed "${pacman_packages[@]}"
 
-echo "--> Installing ${#aur_packages[@]} selected AUR packages..."
+echo -e "${BLUE}Installing ${#aur_packages[@]} selected AUR packages...${NC}"
 yay -S --noconfirm "${aur_packages[@]}"
 
 echo ""
-echo "--- Extra packages have been installed successfully! ---"
+echo -e "${GREEN}--- Extra packages have been installed successfully! ---${NC}"

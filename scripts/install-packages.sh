@@ -44,6 +44,7 @@ pacman_packages=(
     'fzf'
     'zoxide'
     'resvg'
+    'pacman-contrib'
 )
 
 aur_packages=(
@@ -52,16 +53,16 @@ aur_packages=(
     'flux-bin'
 )
 
-echo "--> Installing ${#pacman_packages[@]} selected packages..."
+echo -e "${BLUE}Installing ${#pacman_packages[@]} selected packages...${NC}"
 sudo pacman -S --noconfirm --needed "${pacman_packages[@]}" $(pacman -Sgq nerd-fonts)
 
-echo "--> Installing ${#aur_packages[@]} selected AUR packages without confirmation..."
+echo -e "${BLUE}Installing ${#aur_packages[@]} selected AUR packages without confirmation...${NC}"
 yay -S --noconfirm "${aur_packages[@]}"
 
-echo "--> Installing Oh My Zsh and setting Zsh as default shell..."
+echo -e "${BLUE}Installing Oh My Zsh and setting Zsh as default shell...${NC}"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 sudo chsh -s /usr/bin/zsh $USER
 echo ""
 
 echo ""
-echo "--- All global packages have been installed successfully! ---"
+echo -e "${GREEN}--- All global packages have been installed successfully! ---${NC}"

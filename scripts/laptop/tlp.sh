@@ -2,6 +2,8 @@
 
 set -e
 
+echo -e "${BLUE}Configuring TLP battery thresholds...${NC}"
+
 TARGET_CONFIG="/etc/tlp.conf"
 
 cat <<EOF | sudo tee "$TARGET_CONFIG" > /dev/null
@@ -22,4 +24,4 @@ sudo systemctl enable --now tlp.service
 
 sudo tlp start
 
-echo "Done! Battery thresholds updated."
+echo -e "${GREEN}Done! Battery thresholds updated.${NC}"

@@ -2,7 +2,7 @@
 
 set -e
 
-echo "--- Starting installation of YAY ---"
+echo -e "${BLUE}--- Starting installation of YAY ---${NC}"
 echo ""
 
 sudo pacman -S --needed base-devel git
@@ -20,4 +20,4 @@ cd yay
 makepkg -si
 
 echo ""
-echo "--- YAY has been successfully installed! ---"
+echo -e "${GREEN}--- YAY has been successfully installed! ---${NC}"

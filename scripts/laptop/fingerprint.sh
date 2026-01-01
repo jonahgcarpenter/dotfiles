@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Configuring fingerprint services..."
+echo -e "${BLUE}Configuring fingerprint services...${NC}"
 sudo systemctl stop fprintd 2>/dev/null
 
 sudo systemctl enable --now python3-validity
@@ -9,15 +9,15 @@ sudo systemctl enable --now open-fprintd
 
 sudo systemctl enable open-fprintd-resume open-fprintd-suspend
 
-echo "----------------------------------------------------"
+echo -e "${YELLOW}----------------------------------------------------"
 echo "Ready to enroll fingerprint."
 echo "Please swipe/tap your finger on the sensor repeatedly"
 echo "until you see 'enroll-completed'."
-echo "----------------------------------------------------"
+echo -e "----------------------------------------------------${NC}"
 fprintd-enroll
 
 PAM_FILE="/etc/pam.d/ly"
-echo "Configuring $PAM_FILE for Password OR Fingerprint..."
+echo -e "${BLUE}Configuring $PAM_FILE for Password OR Fingerprint...${NC}"
 
 sudo cp $PAM_FILE "$PAM_FILE.bak"
 
@@ -41,4 +41,4 @@ session    include      login
 -session   optional     pam_kwallet5.so      auto_start
 EOL
 
-echo "Setup Complete!"
+echo -e "${GREEN}Setup Complete!${NC}"
