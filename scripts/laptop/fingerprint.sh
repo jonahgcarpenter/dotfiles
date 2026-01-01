@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Configuring services..."
+echo "Configuring fingerprint services..."
 sudo systemctl stop fprintd 2>/dev/null
 
 sudo systemctl enable --now python3-validity
