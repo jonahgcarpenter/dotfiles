@@ -12,6 +12,8 @@ echo "1) Desktop"
 echo "2) Laptop"
 read -r -p "Enter choice [1-2]: " device_type
 
+export device_type
+
 scripts_to_run=(
     "scripts/install-yay.sh"
     "scripts/install-packages.sh"
