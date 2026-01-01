@@ -1,6 +1,6 @@
 # Dotfiles
 
-<img width="2560" height="1440" alt="fastfetch" src="https://github.com/user-attachments/assets/6de6514d-5751-44e2-af42-a4a784e9dbb3" />
+<img width="744" height="372" alt="image" src="https://github.com/user-attachments/assets/c374d366-0ba9-4fc0-82b1-633e38839ead" />
 
 ## TODO
 
