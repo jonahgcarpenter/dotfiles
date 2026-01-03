@@ -29,7 +29,7 @@ pacman_packages=(
     'ansible-core'
     'talosctl'
     'helm'
-    'swaylock'
+    'hyprlock'
     'usbutils'
     'dnsutils'
     'imagemagick'
