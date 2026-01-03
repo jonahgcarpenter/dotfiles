@@ -42,3 +42,27 @@ session    include      login
 EOL
 
 echo -e "${GREEN}Setup Complete!${NC}"
+
+HYPRLOCK_PAM="/etc/pam.d/hyprlock"
+echo -e "${BLUE}Configuring $HYPRLOCK_PAM for Hyprlock Fingerprint support...${NC}"
+
+if [ -f "$HYPRLOCK_PAM" ]; then
+    sudo cp "$HYPRLOCK_PAM" "$HYPRLOCK_PAM.bak"
+fi
+
+sudo bash -c "cat > $HYPRLOCK_PAM" <<EOL
+#%PAM-1.0
+
+# 1. Try Fingerprint first. 'sufficient' means if this succeeds, unlock immediately.
+auth       sufficient   pam_fprintd.so
+
+# 2. If fingerprint fails (or is ignored), fall back to system password.
+auth       include      system-auth
+
+# Standard authentication includes
+account    include      system-auth
+password   include      system-auth
+session    include      system-auth
+EOL
+
+echo -e "${GREEN}Hyprlock Setup Complete!${NC}"
