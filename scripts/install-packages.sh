@@ -30,6 +30,7 @@ pacman_packages=(
     'talosctl'
     'helm'
     'hyprlock'
+    'hypridle'
     'usbutils'
     'dnsutils'
     'imagemagick'
