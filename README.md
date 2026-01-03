@@ -7,5 +7,4 @@
 ### [Add List](https://github.com/stars/jonahgcarpenter/lists/dotfiles-todo)
 
 - yazi SMB shares
-- fix sleep timer not stopping if logging back in before sleep
 - screen brightness buttons
