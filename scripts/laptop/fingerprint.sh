@@ -24,6 +24,7 @@ sudo cp $PAM_FILE "$PAM_FILE.bak"
 sudo bash -c "cat > $PAM_FILE" <<EOL
 #%PAM-1.0
 
+auth       sufficient   pam_unix.so
 auth       sufficient   pam_fprintd.so
 auth       include      login
 -auth      optional     pam_gnome_keyring.so
