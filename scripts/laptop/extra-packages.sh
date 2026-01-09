@@ -4,6 +4,7 @@ set -e
 
 pacman_packages=(
     'tlp'
+    'brightnessctl'
 )
 
 aur_packages=(
