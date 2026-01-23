@@ -13,7 +13,6 @@
     "memory",
     "custom/gpu",
     "tray",
-    "custom/lock",
     "custom/power"
   ],
   "hyprland/workspaces": {
@@ -22,10 +21,6 @@
       "active": "",
       "default": ""
     }
-  },
-  "tray": {
-    "icon-size": 20,
-    "spacing": 10
   },
   "clock": {
     "timezone": "America/Chicago",
@@ -37,38 +32,39 @@
     "format-ethernet": "󰈀 ",
     "format-disconnected": "󰤠 ",
     "interval": 5,
-    "tooltip": false,
-    "on-click": "kitty -e nmtui"
+    "tooltip": true,
+    "tooltip-format": "{ipaddr}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%): {ipaddr}",
+    "tooltip-format-ethernet": "{ifname}: {ipaddr}",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "kitty --class float_nmtui -e nmtui"
   },
   "cpu": {
-    "interval": 1,
-    "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+    "interval": 2,
+    "format": " {usage}%",
+    "tooltip": true,
+    "on-click": "kitty --class float_btop -e btop"
   },
   "memory": {
     "interval": 30,
-    "format": "  {used:0.1f}G/{total:0.1f}G"
+    "format": " {percentage}%",
+    "on-click": "kitty --class float_btop -e btop"
   },
   "custom/gpu": {
-    "exec": "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader,nounits | awk -F', ' '{ printf \"{\\\"text\\\": \\\"%.1fG/%.1fG\\\", \\\"percentage\\\": %s}\\n\", $2/1024, $3/1024, $1 }'",
+    "exec": "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader,nounits | awk -F', ' '{ printf \"{\\\"tooltip\\\": \\\"%.1fG/%.1fG\\\", \\\"percentage\\\": %s}\\n\", $2/1024, $3/1024, $1 }'",
     "return-type": "json",
     "interval": 1,
-    "format": "󰍹 {icon} {percentage:>2}% {text}",
-    "format-icons": [" ", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-    "tooltip": false
+    "format": "󰍹 {percentage:>2}%",
+    "tooltip": true,
+    "on-click": "kitty --class float_btop -e btop"
   },
   "pulseaudio": {
-    "format": "{icon} {volume}%",
+    "format": "{icon}{volume}%",
     "format-muted": "",
     "format-icons": {
       "default": ["", "", " "]
     },
     "on-click": "pavucontrol"
-  },
-  "custom/lock": {
-    "tooltip": false,
-    "on-click": "~/.config/hypr/scripts/lock_then_suspend.sh & disown",
-    "format": ""
   },
   "custom/power": {
     "format": "󰤆",
