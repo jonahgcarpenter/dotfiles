@@ -1,19 +1,22 @@
 {
   "layer": "top",
   "position": "top",
+  "height": 32,
+  "spacing": 0,
   "modules-left": [
-        "hyprland/workspaces"
-    ],
+    "hyprland/workspaces",
+    "tray",
+    "custom/lock",
+    "custom/power"
+  ],
   "modules-center": ["clock"],
   "modules-right": [
-    "pulseaudio",
-    "battery",
     "network",
+    "battery",
+    "pulseaudio",
     "cpu",
     "memory",
     "custom/gpu",
-    "tray",
-    "custom/power"
   ],
   "hyprland/workspaces": {
     "format": "{name}: {icon}",
@@ -22,53 +25,83 @@
       "default": ""
     }
   },
-  "clock": {
-    "timezone": "America/Chicago",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "{:%m/%d - %I:%M %p}" 
+  "custom/lock": {
+    "format": "<span color='#00FFFF'>  </span>",
+    "on-click": "hyprlock",
+    "tooltip": false
+  },
+  "custom/power": {
+    "format": "<span color='#FF4040'>  </span>",
+    "on-click": "rofi -show power-menu -modi power-menu:~/.config/rofi/power-menu.sh",
+    "tooltip": false
   },
   "network": {
-    "format-wifi": "󰤢 ",
-    "format-ethernet": "󰈀 ",
-    "format-disconnected": "󰤠 ",
-    "interval": 5,
-    "tooltip": true,
-    "tooltip-format": "{ipaddr}",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%): {ipaddr}",
-    "tooltip-format-ethernet": "{ifname}: {ipaddr}",
-    "tooltip-format-disconnected": "Disconnected",
-    "on-click": "kitty --class float_nmtui -e nmtui"
+    "format-wifi": "<span color='#FFFFFF'> 󰤨 </span>{essid} ",
+    "format-ethernet": "<span color='#FFFFFF'> 󰈀 </span>",
+    "tooltip-format": "<span color='#00BFFF'> 󰅢 </span>{bandwidthDownBytes}  <span color='#FF1493'> 󰅧 </span>{bandwidthUpBytes}",
+    "format-linked": "<span color='#FFA500'> 󱘖 </span>{ifname} (No IP) ",
+    "format-disconnected": "<span color='#FF4040'>  </span>Disconnected ",
+    "on-click": "kitty --class float_nmtui -e nmtui",
+    "interval": 1
   },
-  "cpu": {
-    "interval": 2,
-    "format": " {usage}%",
-    "tooltip": true,
-    "on-click": "kitty --class float_btop -e btop"
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span color='#28CD41'> {icon} </span>{capacity}% ",
+    "format-charging": " 󱐋{capacity}%",
+	  "interval": 1,
+    "format-icons": ["󰂎", "󰁼", "󰁿", "󰂁", "󰁹"],
+    "tooltip": true
   },
-  "memory": {
-    "interval": 30,
-    "format": " {percentage}%",
-    "on-click": "kitty --class float_btop -e btop"
+  "pulseaudio": {
+    "format": "<span color='#00FF7F'>{icon}</span>{volume}% ",
+    "format-muted": "<span color='#FF4040'> 󰖁 </span>0% ",
+    "format-icons": {
+      "headphone": "<span color='#BF00FF'>  </span>",
+      "hands-free": "<span color='#BF00FF'>  </span>",
+      "headset": "<span color='#BF00FF'>  </span>",
+      "phone": "<span color='#00FFFF'>  </span>",
+      "portable": "<span color='#00FFFF'>  </span>",
+      "car": "<span color='#FFA500'>  </span>",
+      "default": [
+        "<span color='#808080'>  </span>",
+        "<span color='#FFFF66'>  </span>",
+        "<span color='#00FF7F'>  </span>"
+      ]
+    },
+    "on-click": "pavucontrol",
+    "on-click-right": "pactl -- set-sink-mute 0 toggle",
   },
   "custom/gpu": {
     "exec": "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader,nounits | awk -F', ' '{ printf \"{\\\"tooltip\\\": \\\"%.1fG/%.1fG\\\", \\\"percentage\\\": %s}\\n\", $2/1024, $3/1024, $1 }'",
     "return-type": "json",
     "interval": 1,
-    "format": "󰍹 {percentage:>2}%",
+    "format": "<span color='#FFFFFF'> 󰍹 </span>{percentage:>2}% ",
     "tooltip": true,
     "on-click": "kitty --class float_btop -e btop"
   },
-  "pulseaudio": {
-    "format": "{icon}{volume}%",
-    "format-muted": "",
-    "format-icons": {
-      "default": ["", "", " "]
-    },
-    "on-click": "pavucontrol"
+  "memory": {
+    "interval": 30,
+    "format": "<span color='#FFFFFF'>  </span>{percentage}% ",
+    "on-click": "kitty --class float_btop -e btop"
   },
-  "custom/power": {
-    "format": "󰤆",
-    "tooltip": false,
-    "on-click": "rofi -show power-menu -modi power-menu:~/.config/rofi/power-menu.sh"
+  "cpu": {
+    "format": "<span color='#FFFFFF'>  </span>{usage}% ",
+    "tooltip": true,
+    "on-click": "kitty --class float_btop -e btop"
+  },
+  "clock": {
+    "interval": 1,
+    "timezone": "America/Chicago",
+    "format": " {:%I:%M %p} ",
+    "tooltip": true,
+    "tooltip-format": "{:%B %d, %Y, %A}"
+  },
+  "tray": {
+    "icon-size": 17,
+    "spacing": 6
   }
 }
+
