@@ -18,6 +18,7 @@ configuration {
     modi: "drun";
     show-icons: true;
     display-drun: "";
+    icon-theme: "breeze-dark";
 }
 
 window {

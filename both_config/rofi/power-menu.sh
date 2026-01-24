@@ -17,14 +17,14 @@ texts[reboot]="reboot"
 texts[shutdown]="shut down"
 
 declare -A icons
-icons[lockscreen]="\Uf033e"
-icons[switchuser]="\Uf0019"
-icons[logout]="\Uf0343"
-icons[suspend]="\Uf04b2"
-icons[hibernate]="\Uf02ca"
-icons[reboot]="\Uf0709"
-icons[shutdown]="\Uf0425"
-icons[cancel]="\Uf0156"
+icons[lockscreen]="system-lock-screen"
+icons[switchuser]="system-users"
+icons[logout]="system-log-out"
+icons[suspend]="system-suspend"
+icons[hibernate]="system-hibernate"
+icons[reboot]="system-reboot"
+icons[shutdown]="system-shutdown"
+icons[cancel]="dialog-cancel"
 
 declare -A actions
 actions[lockscreen]="loginctl lock-session ${XDG_SESSION_ID-}"
@@ -37,7 +37,7 @@ actions[shutdown]="systemctl poweroff"
 confirmations=(reboot shutdown logout)
 
 dryrun=false
-showsymbols=true
+showsymbols=false
 showtext=true
 
 function check_valid {
