@@ -5,6 +5,3 @@
 ## TODO
 
 ### [Add List](https://github.com/stars/jonahgcarpenter/lists/dotfiles-todo)
-
-- yazi SMB shares
-- screen brightness buttons
