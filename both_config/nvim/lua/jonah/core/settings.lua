@@ -11,6 +11,10 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.autoindent = true
 
+-- highlight the current line number
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
+
 -- line wrap sucks
 vim.opt.wrap = false
 
