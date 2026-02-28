@@ -46,6 +46,7 @@ pacman_packages=(
     'zoxide'
     'resvg'
     'pacman-contrib'
+    'websocat'
 )
 
 aur_packages=(
