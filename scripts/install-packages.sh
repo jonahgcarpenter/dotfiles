@@ -39,6 +39,7 @@ pacman_packages=(
     'ripgrep'
     'pacman-contrib'
     'websocat'
+    'opencode'
 )
 
 aur_packages=(
