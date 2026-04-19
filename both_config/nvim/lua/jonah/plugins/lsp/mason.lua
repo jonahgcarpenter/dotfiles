@@ -37,6 +37,7 @@ return {
 				"pyright",
 				"dockerls",
 				"docker_compose_language_service",
+				"gopls",
 			},
 		})
 
@@ -46,8 +47,10 @@ return {
 				"stylua", -- lua formatter
 				"isort", -- python formatter
 				"black", -- python formatter
-				"pylint",
-				"eslint_d",
+				"pylint", -- python linter
+				"eslint_d", -- js linter
+				"goimports", -- go imports formatter
+				"gofumpt", -- go formatter
 			},
 		})
 	end,
