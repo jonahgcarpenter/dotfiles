@@ -17,21 +17,23 @@ return {
 
 		-- Smart parser installation logic
 		local ensureInstalled = {
+			"bash",
+			"css",
+			"dockerfile",
 			"go",
 			"gomod",
 			"gosum",
 			"gowork",
-			"json",
-			"javascript",
-			"typescript",
-			"tsx",
-			"yaml",
 			"html",
-			"css",
-			"bash",
+			"javascript",
+			"json",
 			"lua",
+			"php",
+			"python",
+			"tsx",
+			"typescript",
+			"yaml",
 			"vim",
-			"dockerfile",
 			"gitignore",
 		}
 
