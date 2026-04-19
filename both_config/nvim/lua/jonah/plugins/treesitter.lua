@@ -17,6 +17,10 @@ return {
 
 		-- Smart parser installation logic
 		local ensureInstalled = {
+			"go",
+			"gomod",
+			"gosum",
+			"gowork",
 			"json",
 			"javascript",
 			"typescript",
