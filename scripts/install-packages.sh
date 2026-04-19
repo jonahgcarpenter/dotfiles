@@ -40,6 +40,8 @@ pacman_packages=(
     'pacman-contrib'
     'websocat'
     'opencode'
+    'tree-sitter-cli'
+    'ethtool'
 )
 
 aur_packages=(
