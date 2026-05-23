@@ -5,6 +5,9 @@ set -e
 pacman_packages=(
     'tlp'
     'brightnessctl'
+    'bluez'
+    'bluez-utils'
+    'bluetui'
 )
 
 aur_packages=(
