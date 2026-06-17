@@ -3,6 +3,7 @@
 set -e
 
 pacman_packages=(
+    'docker-buildx'
     'spotify-launcher'
     'btop'
     'waybar'
