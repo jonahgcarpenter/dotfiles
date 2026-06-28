@@ -8,6 +8,7 @@ pacman_packages=(
     'bluez'
     'bluez-utils'
     'bluetui'
+    'fwupd'
 )
 
 aur_packages=(
