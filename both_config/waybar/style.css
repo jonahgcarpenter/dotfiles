@@ -37,7 +37,7 @@
 
 #tray,
 #clock,
-#battery,
+#custom-battery,
 #pulseaudio,
 #network,
 #cpu,
@@ -60,20 +60,22 @@
   border-radius: 5px 0px 0px 5px;
 }
 
-#battery {
+#custom-battery {
+  color: #a6d189;
+  background-color: #101010;
+  padding: 0.5rem 1rem;
+  margin: 5px 0;
+}
+
+#custom-battery.charging {
   color: #a6d189;
 }
 
-#battery.charging,
-#battery.plugged {
-  color: #a6d189;
-}
-
-#battery.warning:not(.charging) {
+#custom-battery.warning {
   color: #e5c890;
 }
 
-#battery.critical:not(.charging) {
+#custom-battery.critical {
   color: #e78284;
 }
 

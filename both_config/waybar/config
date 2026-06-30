@@ -7,7 +7,7 @@
   "modules-center": ["clock"],
   "modules-right": [
     "pulseaudio",
-    "battery",
+    "custom/battery",
     "network",
     "cpu",
     "memory",
@@ -70,17 +70,12 @@
     },
     "on-click": "pavucontrol"
   },
-  "battery": {
-    "bat": "BAT1",
-    "interval": 60,
-    "states": {
-        "good": 95,
-        "warning": 30,
-        "critical": 15
-    },
-    "format": "{capacity}%",
-    "format-charging": "{capacity}% ",
-    "format-plugged": "{capacity}% ",
+  "custom/battery": {
+    "exec": "~/.config/waybar/scripts/t480-battery.sh",
+    "return-type": "json",
+    "interval": 10,
+    "format": "{}",
+    "tooltip": true
   },
   "custom/power": {
     "format": "󰤆",
