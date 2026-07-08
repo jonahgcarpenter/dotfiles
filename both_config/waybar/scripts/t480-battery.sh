@@ -41,16 +41,54 @@ icon="󰁹"
 class="good"
 
 if [ "$plugged" = "1" ]; then
-  icon=""
+  if [ "$percent" -le 10 ]; then
+    icon="󰢜"
+  elif [ "$percent" -le 20 ]; then
+    icon="󰂆"
+  elif [ "$percent" -le 30 ]; then
+    icon="󰂇"
+  elif [ "$percent" -le 40 ]; then
+    icon="󰂈"
+  elif [ "$percent" -le 50 ]; then
+    icon="󰢝"
+  elif [ "$percent" -le 60 ]; then
+    icon="󰂉"
+  elif [ "$percent" -le 70 ]; then
+    icon="󰢞"
+  elif [ "$percent" -le 80 ]; then
+    icon="󰂊"
+  elif [ "$percent" -le 90 ]; then
+    icon="󰂋"
+  else
+    icon="󰂅"
+  fi
   class="charging"
+elif [ "$percent" -le 10 ]; then
+  icon="󰁺"
+  class="critical"
 elif [ "$percent" -le 15 ]; then
   icon="󰁺"
   class="critical"
+elif [ "$percent" -le 20 ]; then
+  icon="󰁻"
+  class="warning"
 elif [ "$percent" -le 30 ]; then
   icon="󰁼"
   class="warning"
+elif [ "$percent" -le 40 ]; then
+  icon="󰁽"
+elif [ "$percent" -le 50 ]; then
+  icon="󰁾"
+elif [ "$percent" -le 60 ]; then
+  icon="󰁿"
+elif [ "$percent" -le 70 ]; then
+  icon="󰂀"
+elif [ "$percent" -le 80 ]; then
+  icon="󰂁"
+elif [ "$percent" -le 90 ]; then
+  icon="󰂂"
 fi
 
 tooltip="Internal: $(<"$bat0/capacity")% $(<"$bat0/status")\\nExternal: $(<"$bat1/capacity")% $(<"$bat1/status")"
 
-printf '{"text":"%s%% %s","tooltip":"%s","class":"%s"}\n' "$percent" "$icon" "$tooltip" "$class"
+printf '{"text":"%s %s%%","tooltip":"%s","class":"%s"}\n' "$icon" "$percent" "$tooltip" "$class"
