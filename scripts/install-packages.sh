@@ -43,6 +43,7 @@ pacman_packages=(
     'opencode'
     'tree-sitter-cli'
     'ethtool'
+    'github-cli'
 )
 
 aur_packages=(
