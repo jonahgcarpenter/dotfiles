@@ -8,6 +8,7 @@ pacman_packages=(
     'btop'
     'waybar'
     'rofi'
+    'efibootmgr'
     'solaar'
     'wl-clipboard'
     'discord'
