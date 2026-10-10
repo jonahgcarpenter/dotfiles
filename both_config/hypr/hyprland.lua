@@ -11,9 +11,9 @@ local menu = "rofi -show drun"
 
 -- Autostart
 hl.on("hyprland.start", function()
-    hl.exec_cmd("waybar")
-    hl.exec_cmd("hyprpaper")
-    hl.exec_cmd("hypridle")
+	hl.exec_cmd("waybar")
+	hl.exec_cmd("hyprpaper")
+	hl.exec_cmd("hypridle")
 end)
 
 -- Environment
@@ -22,70 +22,70 @@ hl.env("HYPRCURSOR_SIZE", "24")
 
 -- Look and feel
 hl.config({
-    general = {
-        gaps_in = 5,
-        gaps_out = 20,
-        border_size = 2,
-        col = {
-            active_border = {
-                colors = {
-                    "rgba(8A2BE2FF)",
-                    "rgba(FF00FFFF)",
-                    "rgba(4B0082FF)",
-                },
-                angle = 45,
-            },
-            inactive_border = "rgba(595959aa)",
-        },
-        resize_on_border = false,
-        allow_tearing = false,
-        layout = "dwindle",
-    },
+	general = {
+		gaps_in = 5,
+		gaps_out = 20,
+		border_size = 2,
+		col = {
+			active_border = {
+				colors = {
+					"rgba(8A2BE2FF)",
+					"rgba(FF00FFFF)",
+					"rgba(4B0082FF)",
+				},
+				angle = 45,
+			},
+			inactive_border = "rgba(595959aa)",
+		},
+		resize_on_border = false,
+		allow_tearing = false,
+		layout = "dwindle",
+	},
 
-    decoration = {
-        rounding = 10,
-        rounding_power = 2,
-        active_opacity = 1.0,
-        inactive_opacity = 1.0,
-        shadow = {
-            enabled = true,
-            range = 4,
-            render_power = 3,
-            color = 0xee1a1a1a,
-        },
-        blur = {
-            enabled = true,
-            size = 3,
-            passes = 1,
-            vibrancy = 0.1696,
-        },
-    },
+	decoration = {
+		rounding = 10,
+		rounding_power = 2,
+		active_opacity = 1.0,
+		inactive_opacity = 1.0,
+		shadow = {
+			enabled = true,
+			range = 4,
+			render_power = 3,
+			color = 0xee1a1a1a,
+		},
+		blur = {
+			enabled = true,
+			size = 3,
+			passes = 1,
+			vibrancy = 0.1696,
+		},
+	},
 
-    animations = {
-        enabled = true,
-    },
+	animations = {
+		enabled = true,
+	},
 
-    master = {
-        new_status = "master",
-    },
+	master = {
+		new_status = "master",
+	},
 
-    misc = {
-        force_default_wallpaper = 0,
-        disable_hyprland_logo = true,
-    },
+	misc = {
+		force_default_wallpaper = 0,
+		disable_hyprland_logo = true,
+	},
 
-    input = {
-        kb_layout = "us",
-        kb_variant = "",
-        kb_model = "",
-        kb_options = "",
-        kb_rules = "",
-        follow_mouse = 1,
-        sensitivity = 0,
-        touchpad = {
-            natural_scroll = false,
-        },
-    },
+	input = {
+		kb_layout = "us",
+		kb_variant = "",
+		kb_model = "",
+		kb_options = "",
+		kb_rules = "",
+		follow_mouse = 1,
+		sensitivity = 0,
+		touchpad = {
+			natural_scroll = false,
+		},
+	},
 })
 
 -- Animations
@@ -114,8 +114,8 @@ hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "a
 
 -- Per-device input example retained from the generated configuration.
 hl.device({
-    name = "epic-mouse-v1",
-    sensitivity = -0.5,
+	name = "epic-mouse-v1",
+	sensitivity = -0.5,
 })
 
 -- Keybindings
@@ -135,9 +135,9 @@ hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 
 for workspace = 1, 10 do
-    local key = workspace % 10
-    hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = workspace }))
-    hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = workspace }))
+	local key = workspace % 10
+	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = workspace }))
+	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = workspace }))
 end
 
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
@@ -149,10 +149,26 @@ hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true, repeating = true })
+hl.bind(
+	"XF86AudioRaiseVolume",
+	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86AudioLowerVolume",
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86AudioMute",
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86AudioMicMute",
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
+	{ locked = true, repeating = true }
+)
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
 
@@ -166,61 +182,61 @@ hl.bind("SHIFT + Print", hl.dsp.exec_cmd([[grim -g "$(slurp)" ~/screenshots/$(da
 
 -- Window rules
 hl.window_rule({
-    match = { class = ".*" },
-    suppress_event = "maximize",
+	match = { class = ".*" },
+	suppress_event = "maximize",
 })
 
 hl.window_rule({
-    match = {
-        class = "^$",
-        title = "^$",
-        xwayland = true,
-        float = true,
-        fullscreen = false,
-        pin = false,
-    },
-    no_focus = true,
+	match = {
+		class = "^$",
+		title = "^$",
+		xwayland = true,
+		float = true,
+		fullscreen = false,
+		pin = false,
+	},
+	no_focus = true,
 })
 
 hl.window_rule({
-    match = { class = [[^(org\.kde\.dolphin)$]] },
-    float = true,
-    size = { 900, 600 },
-    center = true,
+	match = { class = [[^(org\.kde\.dolphin)$]] },
+	float = true,
+	size = { 900, 600 },
+	center = true,
 })
 
 hl.window_rule({
-    match = { class = "^(float_btop)$" },
-    float = true,
-    size = { 1600, 1000 },
-    center = true,
+	match = { class = "^(float_btop)$" },
+	float = true,
+	size = { 1600, 1000 },
+	center = true,
 })
 
 hl.window_rule({
-    match = { class = "^(float_nmtui)$" },
-    float = true,
-    size = { 1600, 1000 },
-    center = true,
+	match = { class = "^(float_nmtui)$" },
+	float = true,
+	size = { 1600, 1000 },
+	center = true,
 })
 
 hl.window_rule({
-    match = { class = "^(org.pulseaudio.pavucontrol)$" },
-    float = true,
-    size = { 800, 500 },
-    center = true,
+	match = { class = "^(org.pulseaudio.pavucontrol)$" },
+	float = true,
+	size = { 800, 500 },
+	center = true,
 })
 
 hl.window_rule({
-    match = {
-        class = "^(google-chrome)$",
-        title = "^(Open Files)$",
-    },
-    float = true,
+	match = {
+		class = "^(google-chrome)$",
+		title = "^(Open Files)$",
+	},
+	float = true,
 })
 
 hl.window_rule({
-    match = { class = "^(chrome-nngceckbapebfimnlniiiahkandclblb-Default)$" },
-    float = true,
-    size = { 686, 744 },
-    center = true,
+	match = { class = "^(chrome-nngceckbapebfimnlniiiahkandclblb-Default)$" },
+	float = true,
+	size = { 480, 744 },
+	center = true,
 })
