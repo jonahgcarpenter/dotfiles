@@ -4,6 +4,9 @@ set -e
 
 pacman_packages=(
     'nvidia-container-toolkit'
+    'sbctl'
+    'sbsigntools'
+    'efibootmgr'
 )
 
 aur_packages=(
