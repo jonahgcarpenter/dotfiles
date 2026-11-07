@@ -1,79 +1,74 @@
 #!/bin/bash
+set -euo pipefail
 
-set -e
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=scripts/lib.sh
+source "$REPO_ROOT/scripts/lib.sh"
 
-export GREEN='\033[0;32m'
-export BLUE='\033[0;34m'
-export YELLOW='\033[1;33m'
-export RED='\033[0;31m'
-export NC='\033[0m'
+USAGE="Usage: setup.sh --device desktop|laptop [--verbose]"
+ALLOWED_DEVICES="desktop laptop"
+parse_args "$@" || exit 2
 
-echo -e "${BLUE}### Device Selection ###${NC}"
-echo "Which device type is this?"
-echo "1) Desktop"
-echo "2) Laptop"
-read -r -p "Enter choice [1-2]: " device_type
-
-export device_type
+log_info "Device selected: $DEVICE"
 
 scripts_to_run=(
-    "scripts/install-yay.sh"
-    "scripts/install-packages.sh"
-    "scripts/install-dotfiles.sh"
-    "scripts/docker-setup.sh"
+    "$REPO_ROOT/scripts/common/install-yay.sh"
+    "$REPO_ROOT/scripts/common/install-packages.sh"
+    "$REPO_ROOT/scripts/common/install-dotfiles.sh"
+    "$REPO_ROOT/scripts/common/docker-setup.sh"
 )
 
-target_dir=""
+shopt -s nullglob
+device_scripts=("$REPO_ROOT/scripts/$DEVICE"/*.sh)
+shopt -u nullglob
 
-case $device_type in
-    1)
-        target_dir="scripts/desktop"
-        echo -e "${GREEN}--> Desktop selected.${NC}"
-        ;;
-    2)
-        target_dir="scripts/laptop"
-        echo -e "${GREEN}--> Laptop selected.${NC}"
-        ;;
-    *)
-        echo -e "${RED}Invalid selection. Exiting.${NC}"
-        exit 1
-        ;;
-esac
-
-if [ -d "$target_dir" ]; then
-    shopt -s nullglob
-    specific_scripts=("$target_dir"/*.sh)
-    shopt -u nullglob
-
-    if [ ${#specific_scripts[@]} -gt 0 ]; then
-        echo -e "${GREEN}--> Found ${#specific_scripts[@]} scripts in $target_dir. Adding them to queue...${NC}"
-        scripts_to_run+=("${specific_scripts[@]}")
-    else
-        echo -e "${YELLOW}--> No scripts found in $target_dir. Proceeding with globals only.${NC}"
-    fi
+if [[ ${#device_scripts[@]} -gt 0 ]]; then
+    log_ok "Found ${#device_scripts[@]} device script(s) in scripts/$DEVICE."
+    # Sort for deterministic order.
+    IFS=$'\n' device_scripts=($(printf '%s\n' "${device_scripts[@]}" | sort))
+    unset IFS
+    scripts_to_run+=("${device_scripts[@]}")
 else
-    echo -e "${YELLOW}--> Directory $target_dir does not exist. Proceeding with globals only.${NC}"
+    log_warn "No scripts found in scripts/$DEVICE. Proceeding with shared scripts only."
 fi
 
-echo -e "\n${BLUE}### Starting Setup Process ###${NC}"
-echo -e "${BLUE}The following scripts will be executed:${NC}"
+log_info "The following scripts will be executed:"
 for s in "${scripts_to_run[@]}"; do
-    echo " - $s"
+    log_info " - ${s#$REPO_ROOT/}"
 done
-echo ""
 
+failures=()
 for script in "${scripts_to_run[@]}"; do
-    if [ -f "$script" ]; then
-        echo -e "\n${GREEN}--- Running script: $script ---${NC}"
-        if bash "$script"; then
-            echo -e "${GREEN}--- Finished: $script ---${NC}"
+    if [[ ! -f "$script" ]]; then
+        log_error "File not found: $script"
+        failures+=("$script (missing)")
+        continue
+    fi
+    log_info "Running: ${script#$REPO_ROOT/}"
+    if [[ $VERBOSE -eq 1 ]]; then
+        if bash "$script" --device "$DEVICE" --verbose; then
+            log_ok "Finished: ${script#$REPO_ROOT/}"
         else
-            echo -e "${RED}--- Failed: $script ---${NC}"
+            log_error "Failed: ${script#$REPO_ROOT/}"
+            failures+=("$script")
         fi
     else
-        echo -e "${RED}Error: File not found: $script${NC}"
+        if bash "$script" --device "$DEVICE"; then
+            log_ok "Finished: ${script#$REPO_ROOT/}"
+        else
+            log_error "Failed: ${script#$REPO_ROOT/}"
+            failures+=("$script")
+        fi
     fi
 done
 
-echo -e "\n${BLUE}### Setup Process Complete! ###${NC}\n"
-echo -e "\n${BLUE}### Ensure to reboot to finish setup ###${NC}"
+if [[ ${#failures[@]} -gt 0 ]]; then
+    log_error "Setup complete with ${#failures[@]} failure(s):"
+    for f in "${failures[@]}"; do
+        log_error " - ${f#$REPO_ROOT/}"
+    done
+    exit 1
+fi
+
+log_ok "Setup process complete!"
+log_info "Ensure to reboot to finish setup."

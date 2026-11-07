@@ -1,6 +1,13 @@
 #!/bin/bash
+set -euo pipefail
 
-set -e
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=scripts/lib.sh
+source "$SCRIPT_DIR/../lib.sh"
+
+USAGE="Usage: install-packages.sh --device desktop|laptop [--verbose]"
+ALLOWED_DEVICES="desktop laptop"
+parse_args "$@" || exit 2
 
 pacman_packages=(
     'docker-buildx'
@@ -53,16 +60,34 @@ aur_packages=(
     'flux-bin'
 )
 
-echo -e "${BLUE}Installing ${#pacman_packages[@]} selected packages...${NC}"
-sudo pacman -S --noconfirm --needed "${pacman_packages[@]}" $(pacman -Sgq nerd-fonts)
+if ! command -v yay >/dev/null 2>&1; then
+    log_error "yay is required but not installed. Run install-yay.sh first."
+    exit 1
+fi
 
-echo -e "${BLUE}Installing ${#aur_packages[@]} selected AUR packages without confirmation...${NC}"
-yay -S --noconfirm "${aur_packages[@]}"
+log_info "Installing ${#pacman_packages[@]} pacman packages..."
+mapfile -t font_pkgs < <(pacman -Sgq nerd-fonts)
+run sudo pacman -S --noconfirm --needed "${pacman_packages[@]}" "${font_pkgs[@]}"
 
-echo -e "${BLUE}Installing Oh My Zsh and setting Zsh as default shell...${NC}"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-sudo chsh -s /usr/bin/zsh $USER
-echo ""
+if [[ ${#aur_packages[@]} -gt 0 ]]; then
+    log_info "Installing ${#aur_packages[@]} AUR packages..."
+    run yay -S --noconfirm --needed "${aur_packages[@]}"
+else
+    log_ok "No AUR packages to install. Skipping."
+fi
 
-echo ""
-echo -e "${GREEN}--- All global packages have been installed successfully! ---${NC}"
+if [[ -d "$HOME/.oh-my-zsh" ]]; then
+    log_ok "Oh My Zsh is already installed. Skipping."
+else
+    log_info "Installing Oh My Zsh..."
+    run sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
+
+if [[ "${SHELL:-}" == "/usr/bin/zsh" ]]; then
+    log_ok "Default shell is already zsh. Skipping chsh."
+else
+    log_info "Setting zsh as default shell..."
+    run sudo chsh -s /usr/bin/zsh "$USER"
+fi
+
+log_ok "All shared packages have been installed successfully!"
