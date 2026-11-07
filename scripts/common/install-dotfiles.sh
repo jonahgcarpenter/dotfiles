@@ -25,7 +25,7 @@ fi
 # Apps with device-specific files link per file instead of per directory,
 # so device overlays land next to shared files instead of resolving
 # through a directory symlink into common/.
-FILE_LEVEL_APPS=(hypr waybar rofi)
+FILE_LEVEL_APPS=(hypr waybar rofi opencode)
 
 is_file_level() {
     local app="$1" a
