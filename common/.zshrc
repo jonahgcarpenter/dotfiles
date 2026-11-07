@@ -114,3 +114,6 @@ export PATH="$PATH:$GOPATH/bin"
 # Device-specific overrides linked by install-dotfiles.sh
 # (desktop/.zshrc.local or laptop/.zshrc.local -> ~/.zshrc.local).
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
+# Local-only secrets (never committed).
+[[ -f "$HOME/.zshrc.secrets" ]] && source "$HOME/.zshrc.secrets"

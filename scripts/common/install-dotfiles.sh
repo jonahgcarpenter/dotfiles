@@ -134,6 +134,19 @@ for src in "$DEVICE_DIR"/.[!.]*; do
 done
 shopt -u nullglob dotglob
 
+log_info "Bootstrapping local secrets: $DEVICE..."
+
+SECRETS_EXAMPLE="$DEVICE_DIR/.zshrc.secrets.example"
+if [[ -f "$HOME/.zshrc.secrets" ]]; then
+    log_ok "Skipping: $HOME/.zshrc.secrets exists (local-only, never touched)."
+elif [[ -f "$SECRETS_EXAMPLE" ]]; then
+    cp "$SECRETS_EXAMPLE" "$HOME/.zshrc.secrets"
+    chmod 600 "$HOME/.zshrc.secrets"
+    log_warn "Created $HOME/.zshrc.secrets from device example. Fill in real values."
+else
+    log_warn "No secrets example for $DEVICE. Skipping."
+fi
+
 LY_SRC="$DEVICE_DIR/etc/ly/config.ini"
 LY_DEST="/etc/ly/config.ini"
 if [[ -f "$LY_SRC" ]]; then

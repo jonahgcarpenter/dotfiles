@@ -1,0 +1,3 @@
+# Local-only secrets bootstrapped from per-device .zshrc.secrets.example.
+# The example templates are committed; real values never are.
+.zshrc.secrets
