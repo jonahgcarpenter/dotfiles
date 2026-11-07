@@ -1,1 +1,0 @@
-fragsap ALL=(root) NOPASSWD: /usr/local/sbin/boot-windows-once ""

@@ -8,41 +8,34 @@ The power menu includes **Boot Windows**, with a local Windows logo and a
 confirmation screen. It uses UEFI `BootNext` for a single Windows boot without
 changing the permanent boot order, so Arch remains the default.
 
-The normal dotfiles installation copies the menu and helper sources to
-`~/.config/rofi`. Privileged setup is deliberately opt-in: the shared menu is
-deployed to both desktop and laptop, but the helper is specific to this Windows
-installation. Without the helper installed, selecting Windows displays an error.
+The shared menu (`power-menu.sh`, `config.rasi`) is deployed to both desktop
+and laptop. Everything Windows-specific is generated and installed on desktop
+only: the helper is specific to the detected Windows installation. Without the
+helper installed, selecting Windows displays an error.
 
-### One-Time Setup
+### Automatic Setup (desktop)
+
+`setup.sh --device desktop` runs the installer automatically, or run it
+directly from the repository root:
+
+```bash
+bash scripts/desktop/install-boot-windows.sh --device desktop
+```
 
 Requires UEFI boot, `efibootmgr`, `sudo`, and systemd. The package installation
-script includes `efibootmgr`. Before installing on another machine, inspect
-`efibootmgr -v` and update `desktop/.config/rofi/boot-windows.conf`
-(entry number, GPT partition UUID, and loader path) as appropriate:
+script includes `efibootmgr`. The installer detects the Windows Boot Manager
+entry with `efibootmgr -v`:
 
-- `boot-windows.conf`: Windows entry `0000`, GPT partition UUID
-  `b2f3f5b5-7a66-430a-bacf-c1f619ddf768`, and loader path
-  `\EFI\MICROSOFT\BOOT\BOOTMGFW.EFI`. Both the entry match and `--bootnext`
-  argument must use the correct entry number.
-- `boot-windows-once.sudoers`: the authorized username is `fragsap`.
+* exactly one entry → generates and installs the helper, sudoers rule, and
+  logo. No boot settings change, no reboot.
+* none → skips cleanly (laptops and non-dual-boot machines stay untouched).
+* multiple → errors out; re-run with `--entry XXXX` to disambiguate.
 
-From the repository root, run:
-
-```bash
-sudo bash desktop/.config/rofi/install-boot-windows.sh
-```
-
-Alternatively, after deploying the dotfiles:
-
-```bash
-sudo bash ~/.config/rofi/install-boot-windows.sh
-```
-
-The installer validates the scripts and sudoers syntax, installs a root-owned
-helper at `/usr/local/sbin/boot-windows-once`, and grants password-free access
-only to that helper with no arguments through `/etc/sudoers.d/boot-windows-once`.
-Installation does not change boot settings or reboot. Re-run the installer after
-updating the helper or rule; copying dotfiles alone does not update system files.
+The installer validates syntax, installs a root-owned helper at
+`/usr/local/sbin/boot-windows-once`, and grants password-free access only to
+that helper with no arguments through `/etc/sudoers.d/boot-windows-once`.
+Re-run after firmware or disk changes; the helper re-verifies the Windows EFI
+identity on every use and refuses to act if it changed.
 
 Choosing **Boot Windows** and confirming will set `BootNext` and immediately
 request a reboot. The helper checks the Windows EFI identity first and does not
@@ -52,7 +45,7 @@ remains selected for the next boot; `sudo efibootmgr --delete-bootnext` cancels 
 ### Safe Menu Check
 
 ```bash
-bash desktop/.config/rofi/power-menu.sh --dry-run --choose windows
+bash common/.config/rofi/power-menu.sh --dry-run --choose windows
 ```
 
 This prints the confirmation menu without modifying boot settings or rebooting.
