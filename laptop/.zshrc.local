@@ -1,0 +1,3 @@
+# Laptop-specific shell overrides (linked to ~/.zshrc.local).
+alias system-update="~/projects/dotfiles/scripts/common/system-update.sh --device laptop"
+alias battery-check="sudo tlp-stat -b"

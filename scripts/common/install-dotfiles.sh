@@ -22,6 +22,21 @@ if [[ ! -d "$DEVICE_DIR" ]]; then
     exit 1
 fi
 
+# Apps with device-specific files link per file instead of per directory,
+# so device overlays land next to shared files instead of resolving
+# through a directory symlink into common/.
+FILE_LEVEL_APPS=(hypr waybar rofi)
+
+is_file_level() {
+    local app="$1" a
+    for a in "${FILE_LEVEL_APPS[@]}"; do
+        if [[ "$a" == "$app" ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
 BACKUP_BASE="$HOME/.dotfiles_backup"
 BACKUP_DIR=""
 
@@ -53,11 +68,39 @@ link_entry() {
     log_ok "Linked: $dest -> $src"
 }
 
+# Replace a stale directory symlink with a real directory so per-file
+# links have somewhere to live (the old symlink is kept in the backup).
+ensure_real_dir() {
+    local dir="$1"
+    if [[ -L "$dir" ]]; then
+        backup_target "$dir"
+        log_warn "Replaced directory symlink with real dir: $dir (backup kept)"
+    fi
+    mkdir -p "$dir"
+}
+
+# Link every regular file under a source tree to the mirrored destination.
+link_tree_files() {
+    local src_dir="$1"
+    local dest_dir="$2"
+    local f rel
+    ensure_real_dir "$dest_dir"
+    while IFS= read -r -d '' f; do
+        rel="${f#$src_dir/}"
+        link_entry "$f" "$dest_dir/$rel"
+    done < <(find "$src_dir" -type f -print0)
+}
+
 log_info "Linking shared configs (device: $DEVICE)..."
 
 shopt -s nullglob dotglob
 for src in "$COMMON_DIR"/.config/*; do
-    link_entry "$src" "$HOME/.config/$(basename "$src")"
+    app="$(basename "$src")"
+    if [[ -d "$src" && ! -L "$src" ]] && is_file_level "$app"; then
+        link_tree_files "$src" "$HOME/.config/$app"
+    else
+        link_entry "$src" "$HOME/.config/$app"
+    fi
 done
 for src in "$COMMON_DIR"/.[!.]*; do
     base="$(basename "$src")"
@@ -68,12 +111,28 @@ done
 log_info "Linking device overlay: $DEVICE..."
 
 if [[ -d "$DEVICE_DIR/.config" ]]; then
-    for src in "$DEVICE_DIR"/.config/*; do
-        link_entry "$src" "$HOME/.config/$(basename "$src")"
-    done
+    while IFS= read -r -d '' f; do
+        rel="${f#$DEVICE_DIR/.config/}"
+        if [[ -d "$f" && ! -L "$f" ]]; then
+            ensure_real_dir "$HOME/.config/$rel"
+        else
+            link_entry "$f" "$HOME/.config/$rel"
+        fi
+    done < <(find "$DEVICE_DIR/.config" -mindepth 1 -print0 | sort -z)
 else
     log_warn "No .config overlay for $DEVICE. Skipping."
 fi
+shopt -u nullglob dotglob
+
+log_info "Linking device dotfiles: $DEVICE..."
+
+shopt -s nullglob dotglob
+for src in "$DEVICE_DIR"/.[!.]*; do
+    base="$(basename "$src")"
+    [[ "$base" == ".config" || "$base" == "etc" ]] && continue
+    link_entry "$src" "$HOME/$base"
+done
+shopt -u nullglob dotglob
 
 LY_SRC="$DEVICE_DIR/etc/ly/config.ini"
 LY_DEST="/etc/ly/config.ini"
@@ -95,6 +154,5 @@ if [[ -f "$LY_SRC" ]]; then
 else
     log_warn "No ly config for $DEVICE at $LY_SRC. Skipping."
 fi
-shopt -u nullglob dotglob
 
 log_ok "Dotfiles deployment complete!"

@@ -104,11 +104,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias k="kubectl"
 alias lzd="lazydocker"
-alias system-update="~/projects/dotfiles/system-update.sh"
-# alias battery-check="sudo tlp-stat -b"
 
 # Paths
 
-# GO 
+# GO
 export GOPATH="$HOME/.local/share/go"
 export PATH="$PATH:$GOPATH/bin"
+
+# Device-specific overrides linked by install-dotfiles.sh
+# (desktop/.zshrc.local or laptop/.zshrc.local -> ~/.zshrc.local).
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

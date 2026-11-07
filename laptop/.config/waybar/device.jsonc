@@ -1,0 +1,28 @@
+{
+  "modules-right": [
+    "pulseaudio",
+    "battery",
+    "network",
+    "cpu",
+    "memory",
+    "tray",
+    "custom/power"
+  ],
+  "battery": {
+    "bat": "BAT1",
+    "interval": 60,
+    "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 15
+    },
+    "format": "{capacity}%",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% "
+  },
+  "custom/power": {
+    "format": "󰤆",
+    "tooltip": false,
+    "on-click": "rofi -show power-menu -modi \"power-menu:~/.config/rofi/power-menu.sh --choices=shutdown/reboot/suspend/hibernate/logout/lockscreen\""
+  }
+}

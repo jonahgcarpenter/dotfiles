@@ -17,9 +17,10 @@ installation. Without the helper installed, selecting Windows displays an error.
 
 Requires UEFI boot, `efibootmgr`, `sudo`, and systemd. The package installation
 script includes `efibootmgr`. Before installing on another machine, inspect
-`efibootmgr -v` and update these files in `both_config/rofi` as appropriate:
+`efibootmgr -v` and update `desktop/.config/rofi/boot-windows.conf`
+(entry number, GPT partition UUID, and loader path) as appropriate:
 
-- `boot-windows-once`: Windows entry `0000`, GPT partition UUID
+- `boot-windows.conf`: Windows entry `0000`, GPT partition UUID
   `b2f3f5b5-7a66-430a-bacf-c1f619ddf768`, and loader path
   `\EFI\MICROSOFT\BOOT\BOOTMGFW.EFI`. Both the entry match and `--bootnext`
   argument must use the correct entry number.
@@ -28,7 +29,7 @@ script includes `efibootmgr`. Before installing on another machine, inspect
 From the repository root, run:
 
 ```bash
-sudo bash both_config/rofi/install-boot-windows.sh
+sudo bash desktop/.config/rofi/install-boot-windows.sh
 ```
 
 Alternatively, after deploying the dotfiles:
@@ -51,7 +52,7 @@ remains selected for the next boot; `sudo efibootmgr --delete-bootnext` cancels 
 ### Safe Menu Check
 
 ```bash
-bash both_config/rofi/power-menu.sh --dry-run --choose windows
+bash desktop/.config/rofi/power-menu.sh --dry-run --choose windows
 ```
 
 This prints the confirmation menu without modifying boot settings or rebooting.

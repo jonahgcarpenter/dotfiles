@@ -11,21 +11,33 @@ if (( EUID != 0 )); then
     exit 1
 fi
 
+source_dir=$(dirname -- "$(readlink -f -- "$0")")
+conf="$source_dir/boot-windows.conf"
+if [[ ! -f "$conf" ]]; then
+    printf '%s\n' 'No Windows configuration for this device.' >&2
+    exit 1
+fi
+# shellcheck disable=SC1090
+source "$conf"
+: "${ENTRY:?ENTRY is not set in boot-windows.conf}"
+: "${PARTUUID:?PARTUUID is not set in boot-windows.conf}"
+: "${LOADER:?LOADER is not set in boot-windows.conf}"
+
 entries=$(/usr/bin/efibootmgr)
 windows_entry=
 while IFS= read -r line; do
-    if [[ $line == 'Boot0000* Windows Boot Manager'* ]]; then
+    if [[ $line == "Boot${ENTRY}* Windows Boot Manager"* ]]; then
         windows_entry=$line
     fi
 done <<< "$entries"
-if [[ $windows_entry != *'HD(1,GPT,b2f3f5b5-7a66-430a-bacf-c1f619ddf768,'* ||
-      $windows_entry != *'\EFI\MICROSOFT\BOOT\BOOTMGFW.EFI'* ]]; then
+if [[ $windows_entry != *"HD(1,GPT,${PARTUUID},"* ||
+      $windows_entry != *"$LOADER"* ]]; then
     printf '%s\n' 'Windows EFI entry has changed; refusing to modify boot settings.' >&2
     exit 1
 fi
 
 # BootNext is consumed once by firmware; the permanent BootOrder is untouched.
-/usr/bin/efibootmgr --bootnext 0000
+/usr/bin/efibootmgr --bootnext "$ENTRY"
 if ! /usr/bin/systemctl reboot; then
     printf '%s\n' 'Reboot failed. Windows is still selected for the next boot.' >&2
     exit 1

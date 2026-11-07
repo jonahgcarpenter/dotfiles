@@ -1,0 +1,9 @@
+# Desktop-specific shell overrides (linked to ~/.zshrc.local).
+alias system-update="~/projects/dotfiles/scripts/common/system-update.sh --device desktop"
+
+# Added by cua-driver-rs installer — see https://github.com/trycua/cua
+export PATH="/home/fragsap/.local/bin:$PATH"
+
+# Vars
+export VLLM_API_KEY=""
+export OSWALD_API_KEY=""

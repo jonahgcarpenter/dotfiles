@@ -1,9 +1,9 @@
 -- Hyprland configuration
 -- https://wiki.hypr.land/Configuring/Start/
 
--- Machine-specific configuration. Enable exactly one when needed.
--- require("host.desktop")
--- require("host.laptop")
+-- Machine-specific configuration, linked per device by install-dotfiles.sh
+-- (desktop/.config/hypr/host/active.lua or laptop/.config/hypr/host/active.lua).
+require("host.active")
 
 local terminal = "kitty"
 local fileManager = "dolphin"

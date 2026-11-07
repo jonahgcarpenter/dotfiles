@@ -1,0 +1,24 @@
+{
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "cpu",
+    "memory",
+    "custom/gpu",
+    "tray",
+    "custom/power"
+  ],
+  "custom/gpu": {
+    "exec": "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader,nounits | awk -F', ' '{ printf \"{\\\"tooltip\\\": \\\"%.1fG/%.1fG\\\", \\\"percentage\\\": %s}\\n\", $2/1024, $3/1024, $1 }'",
+    "return-type": "json",
+    "interval": 1,
+    "format": "󰍹 {percentage:>2}%",
+    "tooltip": true,
+    "on-click": "kitty --class float_btop -e btop"
+  },
+  "custom/power": {
+    "format": "󰤆",
+    "tooltip": false,
+    "on-click": "rofi -show power-menu -modi power-menu:~/.config/rofi/power-menu.sh"
+  }
+}
