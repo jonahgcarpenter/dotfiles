@@ -1,0 +1,21 @@
+{
+  "enabledProviders": ["opencode-go"],
+  "enableToast": false,
+  "tuiCommandDisplay": "dialog",
+  "showSessionTokens": false,
+  "sessionTokenScope": "current",
+
+  "formatStyle": "allWindows",
+  "percentDisplayMode": "used",
+  "percentLabelStyle": "full",
+  "accountingDetail": "summary",
+  "resetTimeDecimals": 0,
+  "resetTimeSpaced": true,
+
+  "tuiSidebarPanel": {
+    "enabled": true
+  },
+  "maintainerAnnouncements": {
+    "enabled": false
+  }
+}
