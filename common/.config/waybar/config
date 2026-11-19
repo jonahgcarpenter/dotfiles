@@ -52,5 +52,10 @@
       "default": ["", "", " "]
     },
     "on-click": "pavucontrol"
+  },
+    "custom/power": {
+    "format": "󰤆",
+    "tooltip": false,
+    "on-click": "rofi -show power-menu -modi power-menu:~/.config/rofi/power-menu.sh"
   }
 }
