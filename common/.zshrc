@@ -117,3 +117,6 @@ export PATH="$PATH:$GOPATH/bin"
 
 # Local-only secrets (never committed).
 [[ -f "$HOME/.zshrc.secrets" ]] && source "$HOME/.zshrc.secrets"
+
+# browse
+export PATH='/home/fragsap/.local/bin':"$PATH"

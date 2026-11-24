@@ -47,5 +47,18 @@
       }
     }
   },
-  "plugin": ["@slkiser/opencode-quota@latest"]
+  "plugin": ["@slkiser/opencode-quota@latest"],
+  "mcp": {
+    "servers": {
+      "browse": {
+        "type": "local",
+        "command": ["/home/fragsap/.local/bin/browse", "mcp"],
+        "cwd": "/home/fragsap",
+        "pool": true,
+        "environment": {
+          "OPENCODE_BROWSER_RUNTIME": "auto-update"
+        }
+      }
+    }
+  }
 }
