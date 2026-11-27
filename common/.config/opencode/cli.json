@@ -5,7 +5,8 @@
   },
   "animations": true,
   "session": {
-    "thinking": "hide"
+    "thinking": "hide",
+    "verbosity": "high"
   },
   "tabs": {
     "mode": "off"
